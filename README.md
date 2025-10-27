@@ -1,26 +1,35 @@
-# ECS Fargate Terraform Demo
+# ECS Fargate Terraform Stack
 
-Production-like ECS Fargate stack with Application Load Balancer, auto-scaling, and monitoring.
+Production-ready ECS Fargate infrastructure with auto-scaling, multi-AZ high availability, and comprehensive monitoring.
 
 ## 🏗️ Architecture
 
-- **VPC**: 2 Availability Zones with public and private subnets
-- **ALB**: Public-facing Application Load Balancer
-- **ECS Fargate**: Containerized Nginx application in private subnets
-- **Auto Scaling**: CPU-based scaling (70% target)
-- **CloudWatch**: Centralized logging
-- **SSM Parameter Store**: Environment configuration
+- **VPC**: Multi-AZ (2 availability zones) with public and private subnets
+- **Load Balancer**: Application Load Balancer in public subnets
+- **Compute**: ECS Fargate tasks in private subnets
+- **Networking**: NAT Gateways for outbound internet access
+- **Monitoring**: CloudWatch Logs with Container Insights
+- **Scaling**: Auto-scaling based on CPU (2-6 tasks)
 
-## 📋 Prerequisites
+## 🚀 Quick Start
 
+### Prerequisites
 - AWS Account with configured CLI
 - Terraform >= 1.0
 - Git
 
-## 🚀 Quick Start
-
-### 1. Clone Repository
+### Deploy
 
 ```bash
-git clone <your-repo-url>
+# Clone repository
+git clone https://github.com/sofien92/ecs-fargate-terraform.git
 cd ecs-fargate-terraform/terraform
+
+# Initialize Terraform
+terraform init
+
+# Deploy
+terraform apply -auto-approve
+
+# Get application URL
+terraform output alb_url
